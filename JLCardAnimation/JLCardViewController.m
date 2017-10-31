@@ -296,8 +296,8 @@
                              draggableView.center=preDraggableView.originalCenter;
                          }
                      }completion:^(BOOL complete){
-                        self.disLikeBtn.transform = CGAffineTransformMakeScale(1, 1);
-                        self.liekBtn.transform = CGAffineTransformMakeScale(1, 1);
+                         self.disLikeBtn.transform = CGAffineTransformMakeScale(1, 1);
+                         self.liekBtn.transform = CGAffineTransformMakeScale(1, 1);
                      }];
     
 }
@@ -335,7 +335,7 @@
                      animations:^{
                         self.liekBtn.transform = CGAffineTransformMakeScale(1.2, 1.2);
                          dragView.center = finishPoint;
-                         dragView.transform = CGAffineTransformMakeRotation(-ROTATION_ANGLE);
+                         dragView.transform = CGAffineTransformMakeRotation(ROTATION_ANGLE);
                      } completion:^(BOOL finished) {
                          self.liekBtn.transform = CGAffineTransformMakeScale(1, 1);
                           [self swipCard:dragView Direction:YES];
