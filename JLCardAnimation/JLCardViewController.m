@@ -322,7 +322,7 @@
     NSLog(@"unlike:%@",userInfo[@"number"]);
 }
 
-
+#pragma mark - 左右按钮点击
 
 -(void)rightButtonClickAction {
     if (_flag == YES) {
