@@ -251,6 +251,7 @@
 }
 
 #pragma mark - 滑动中更改其他卡片位置
+//只会放大一部分,不会全部进行放大;最后手放开才全部放大
 -(void)moveCards:(CGFloat)distance{
     
     if (fabs(distance)<=PAN_DISTANCE) {
@@ -270,6 +271,8 @@
     } else {
         self.disLikeBtn.transform=CGAffineTransformMakeScale(1+0.1*fabs(distance/PAN_DISTANCE), 1+0.1*fabs(distance/PAN_DISTANCE));
     }
+    
+    
 }
 
 #pragma mark - 滑动终止后复原其他卡片

@@ -19,10 +19,14 @@
 
 #define BUTTON_WIDTH lengthFit(40)
 
-@interface JLDragCardView() {
-    CGFloat xFromCenter;
-    CGFloat yFromCenter;
-}
+@interface JLDragCardView()
+
+/** 设置基本参数*/
+@property (nonatomic ,assign) float xFromCenter;
+
+/** 设置基本参数*/
+@property (nonatomic ,assign) float yFromCenter;
+
 @property (strong, nonatomic) UILabel *nameLabel;
 
 /** likeButton*/
@@ -49,56 +53,71 @@
         self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
         [self addGestureRecognizer:self.panGesture];
         
-        UIView *bgView            = [[UIView alloc]initWithFrame:self.bounds];
-        bgView.layer.cornerRadius = 4;
-        bgView.clipsToBounds      = YES;
-        [self addSubview:bgView];
-        
-      
-        
-        self.headerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
-        self.headerImageView.backgroundColor = [UIColor lightGrayColor];
-        self.headerImageView.userInteractionEnabled = YES;
-        [bgView addSubview:self.headerImageView];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
-        [self.headerImageView addGestureRecognizer:tap];
+//        UIView *bgView            = [[UIView alloc]initWithFrame:self.bounds];
+//        bgView.layer.cornerRadius = 4;
+//        bgView.clipsToBounds      = YES;
+//        [self addSubview:bgView];
         
         
- 
-        
-        
-        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.frame.size.width+10, self.frame.size.width - 40, 20)];
-        self.nameLabel.font = [UIFont systemFontOfSize:16];
-        self.nameLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-        [bgView addSubview:self.nameLabel];
-        
-        UILabel *alertLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.frame.size.width +30, self.frame.size.width - 40, 20)];
-        alertLabel.font = [UIFont systemFontOfSize:12];
-        alertLabel.textColor = [UIColor colorWithRed:155/255.0 green:155/255.0 blue:155/255.0 alpha:1];
-        alertLabel.text = @"其它，10km";
-        [bgView addSubview:alertLabel];
-        
+//        self.headerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
+//        self.headerImageView.backgroundColor = [UIColor lightGrayColor];
+//        self.headerImageView.userInteractionEnabled = YES;
+//        [bgView addSubview:self.headerImageView];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+//        [self.headerImageView addGestureRecognizer:tap];
+//
+//        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.frame.size.width+10, self.frame.size.width - 40, 20)];
+//        self.nameLabel.font = [UIFont systemFontOfSize:16];
+//        self.nameLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+//        [bgView addSubview:self.nameLabel];
+//
+//        UILabel *alertLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.frame.size.width +30, self.frame.size.width - 40, 20)];
+//        alertLabel.font = [UIFont systemFontOfSize:12];
+//        alertLabel.textColor = [UIColor colorWithRed:155/255.0 green:155/255.0 blue:155/255.0 alpha:1];
+//        alertLabel.text = @"其它，10km";
+//        [bgView addSubview:alertLabel];
         
         self.layer.allowsEdgeAntialiasing                 = YES;
-        bgView.layer.allowsEdgeAntialiasing               = YES;
-        self.headerImageView.layer.allowsEdgeAntialiasing = YES;
-        
+//        bgView.layer.allowsEdgeAntialiasing               = YES;
+//        self.headerImageView.layer.allowsEdgeAntialiasing = YES;
         
         [self addSubview:self.dislikeButton];
         [self addSubview:self.likeButton];
 
-        
         self.dislikeButton.alpha = 0.0f;
         self.likeButton.alpha = 0.0f;
+        
+        [self.layer addObserver:self forKeyPath:@"position" options:0 context:NULL];
        
     }
     return self;
 }
 
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    
+    if ([keyPath isEqualToString:@"position"]) {
+        
+//        NSLog(@"position=:%@",NSStringFromCGPoint(self.layer.position));
+//        NSLog(@"xFromCenter:%f",self.xFromCenter);
+//        NSLog(@"fix:position:%f",self.layer.position.x - [UIScreen mainScreen].bounds.size.width * 0.5);
+//        NSLog(@"====%zd===",self.xFromCenter == self.layer.position.x - [UIScreen mainScreen].bounds.size.width * 0.5);
+        
+        
+        //判断按钮的显示隐藏
+        float xFromCenter = self.layer.position.x - [UIScreen mainScreen].bounds.size.width * 0.5;
+
+        if (xFromCenter > 0) {
+            self.likeButton.alpha = MIN(fabs((xFromCenter)/100.0),1.0);
+        }else{
+            self.dislikeButton.alpha = MIN(fabs((xFromCenter)/100.0),1.0);
+        }
+    }
+}
+
 -(void)layoutSubviews{
     
     [super layoutSubviews];
-    
     
     //在左边
     self.likeButton.frame = CGRectMake(20, 20, 60, 60);
@@ -119,8 +138,8 @@
     
     _infoDict = infoDict;
     
-    self.nameLabel.text = [NSString stringWithFormat:@"郑爽 %@号",self.infoDict[@"number"]];
-    self.headerImageView.image = [UIImage imageNamed:self.infoDict[@"image"]];
+//    self.nameLabel.text = [NSString stringWithFormat:@"郑爽 %@号",self.infoDict[@"number"]];
+//    self.headerImageView.image = [UIImage imageNamed:self.infoDict[@"image"]];
  
     self.dislikeButton.alpha = 0.0f;
     self.likeButton.alpha = 0.0f;
@@ -133,44 +152,32 @@
     if (!self.canPan) {
         return ;
     }
-    xFromCenter = [gesture translationInView:self].x;
-    yFromCenter = [gesture translationInView:self].y;
+    self.xFromCenter = [gesture translationInView:self].x;
+    self.yFromCenter = [gesture translationInView:self].y;
     
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
             break;
         case UIGestureRecognizerStateChanged: {
             
-            CGFloat rotationStrength = MIN(xFromCenter / ROTATION_STRENGTH, ROTATION_MAX);
+            CGFloat rotationStrength = MIN(self.xFromCenter / ROTATION_STRENGTH, ROTATION_MAX);
             
             CGFloat rotationAngel = (CGFloat) (ROTATION_ANGLE * rotationStrength);
             
             CGFloat scale = MAX(1 - fabs(rotationStrength) / SCALE_STRENGTH, SCALE_MAX);
             
-            self.center = CGPointMake(self.originalCenter.x + xFromCenter, self.originalCenter.y + yFromCenter);
+            self.center = CGPointMake(self.originalCenter.x + self.xFromCenter, self.originalCenter.y + self.yFromCenter);
             
             CGAffineTransform transform = CGAffineTransformMakeRotation(rotationAngel);
             
             CGAffineTransform scaleTransform = CGAffineTransformScale(transform, scale, scale);
             
             self.transform = scaleTransform;
-            [self updateOverLay:xFromCenter];
-            
-            //判断按钮的显示隐藏
-            NSLog(@"xFromCenter:=%f",xFromCenter);
-            
-            if (xFromCenter > 0) {
-                self.likeButton.alpha = MIN(fabs((xFromCenter)/100.0),1.0);
-            }else{
-                self.dislikeButton.alpha = MIN(fabs((xFromCenter)/100.0),1.0);
-            }
-            
+            [self updateOverLay:self.xFromCenter];
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            [self followUpActionWithDistance:xFromCenter andVelocity:[gesture velocityInView:self.superview]];
-           
-            
+            [self followUpActionWithDistance:self.xFromCenter andVelocity:[gesture velocityInView:self.superview]];
         }
             break;
             
@@ -186,9 +193,9 @@
 
 #pragma mark ----------- 后续动作判断
 -(void)followUpActionWithDistance:(CGFloat)distance andVelocity:(CGPoint)velocity {
-    if (xFromCenter > 0 && (distance > ACTION_MARGIN_RIGHT || velocity.x > ACTION_VELOCITY )) {
+    if (self.xFromCenter > 0 && (distance > ACTION_MARGIN_RIGHT || velocity.x > ACTION_VELOCITY )) {
         [self rightAction:velocity];
-    } else if(xFromCenter < 0 && (distance < - ACTION_MARGIN_RIGHT || velocity.x < -ACTION_VELOCITY)) {
+    } else if(self.xFromCenter < 0 && (distance < - ACTION_MARGIN_RIGHT || velocity.x < -ACTION_VELOCITY)) {
         [self leftAction:velocity];
     }else {
         //回到原点
@@ -214,11 +221,11 @@
 #pragma mark - 按钮动作
 -(void)rightAction:(CGPoint)velocity {
     CGFloat distanceX=[[UIScreen mainScreen]bounds].size.width+CARD_WIDTH+self.originalCenter.x;//横向移动距离
-    CGFloat distanceY=distanceX*yFromCenter/xFromCenter;//纵向移动距离
+    CGFloat distanceY=distanceX*self.yFromCenter/self.xFromCenter;//纵向移动距离
     CGPoint finishPoint = CGPointMake(self.originalCenter.x+distanceX, self.originalCenter.y+distanceY);//目标center点
     
     CGFloat vel=sqrtf(pow(velocity.x, 2)+pow(velocity.y, 2));//滑动手势横纵合速度
-    CGFloat displace=sqrt(pow(distanceX-xFromCenter,2)+pow(distanceY-yFromCenter,2));//需要动画完成的剩下距离
+    CGFloat displace=sqrt(pow(distanceX-self.xFromCenter,2)+pow(distanceY-self.yFromCenter,2));//需要动画完成的剩下距离
     
     CGFloat duration=fabs(displace/vel);//动画时间
     
@@ -247,12 +254,12 @@
     //横向移动距离
     CGFloat distanceX = -CARD_WIDTH - self.originalCenter.x;
     //纵向移动距离
-    CGFloat distanceY = distanceX*yFromCenter/xFromCenter;
+    CGFloat distanceY = distanceX*self.yFromCenter/self.xFromCenter;
     //目标center点
     CGPoint finishPoint = CGPointMake(self.originalCenter.x+distanceX, self.originalCenter.y+distanceY);
     
     CGFloat vel = sqrtf(pow(velocity.x, 2) + pow(velocity.y, 2));
-    CGFloat displace = sqrtf(pow(distanceX - xFromCenter, 2) + pow(distanceY - yFromCenter, 2));
+    CGFloat displace = sqrtf(pow(distanceX - self.xFromCenter, 2) + pow(distanceY - self.yFromCenter, 2));
     
     CGFloat duration = fabs(displace/vel);
     if (duration>0.6) {
@@ -260,10 +267,6 @@
     }else if(duration < 0.3) {
         duration = 0.3;
     }
-    
-    
-   
-    
     
     [UIView animateWithDuration:duration
                      animations:^{

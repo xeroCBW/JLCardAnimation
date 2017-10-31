@@ -29,6 +29,7 @@
 		CC516F501D76757100A25D60 /* JLCardAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC516F4F1D76757100A25D60 /* JLCardAnimationTests.m */; };
 		CC516F5B1D76757100A25D60 /* JLCardAnimationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC516F5A1D76757100A25D60 /* JLCardAnimationUITests.m */; };
 		CC516F6A1D76760200A25D60 /* JLDragCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC516F691D76760200A25D60 /* JLDragCardView.m */; };
+		D08854541FA87AFA0096026D /* CardContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D08854531FA87AFA0096026D /* CardContentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		CC516F691D76760200A25D60 /* JLDragCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLDragCardView.m; sourceTree = "<group>"; };
 		CC516F6B1D767CBC00A25D60 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CC516F6C1D767FBE00A25D60 /* CardHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardHeader.h; sourceTree = "<group>"; };
+		D08854521FA87AFA0096026D /* CardContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardContentView.h; sourceTree = "<group>"; };
+		D08854531FA87AFA0096026D /* CardContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardContentView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				CC516F391D76757000A25D60 /* AppDelegate.m */,
 				CC516F681D76760200A25D60 /* JLDragCardView.h */,
 				CC516F691D76760200A25D60 /* JLDragCardView.m */,
+				D08854521FA87AFA0096026D /* CardContentView.h */,
+				D08854531FA87AFA0096026D /* CardContentView.m */,
 				CC1E91741D77BFA3000FA066 /* JLCardViewController.h */,
 				CC1E91751D77BFA3000FA066 /* JLCardViewController.m */,
 				CC516F3E1D76757000A25D60 /* Main.storyboard */,
@@ -340,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D08854541FA87AFA0096026D /* CardContentView.m in Sources */,
 				CC516F6A1D76760200A25D60 /* JLDragCardView.m in Sources */,
 				CC516F3A1D76757000A25D60 /* AppDelegate.m in Sources */,
 				CC1E91761D77BFA3000FA066 /* JLCardViewController.m in Sources */,
