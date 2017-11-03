@@ -36,9 +36,9 @@
                             <rect key="frame" x="284" y="284" width="142" height="142"/>
                             <color key="backgroundColor" red="1" green="0.51860894097222221" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-Db-fVC">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-Db-fVC" customClass="CBWProgressView">
                             <rect key="frame" x="0.0" y="421" width="426" height="5"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="5" id="yeZ-c1-F9R"/>
                             </constraints>
@@ -105,7 +105,7 @@
                 <outlet property="bigImageView" destination="4PK-Qi-FtN" id="g5q-Gy-ez3"/>
                 <outlet property="firstImageView" destination="NPv-QW-OSu" id="WrQ-YY-TDc"/>
                 <outlet property="playButton" destination="Q6N-C5-lPf" id="HEx-fq-ocA"/>
-                <outlet property="progressView" destination="VVt-Db-fVC" id="ePF-cq-ePE"/>
+                <outlet property="progressView" destination="VVt-Db-fVC" id="tei-1y-2mF"/>
                 <outlet property="secondImageView" destination="C2H-wg-tSp" id="R62-IC-Lu9"/>
                 <outlet property="threeImageView" destination="A0f-V0-dgl" id="WE0-IE-3rQ"/>
             </connections>

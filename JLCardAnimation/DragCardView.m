@@ -7,6 +7,7 @@
 //
 
 #import "DragCardView.h"
+#import "CBWProgressView.h"
 
 
 @interface DragCardView()
@@ -19,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *threeImageView;
 
-@property (weak, nonatomic) IBOutlet UIView *progressView;
+@property (weak, nonatomic) IBOutlet CBWProgressView *progressView;
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 
@@ -33,13 +34,15 @@
 -(void)awakeFromNib{
     
     [super awakeFromNib];
+
+    self.progressView.progressViewColor = [UIColor greenColor];
+    
     
     [self addTapGestureWithImageView:self.bigImageView Acion:@selector(bigImageViewTapAction:)];
     [self addTapGestureWithImageView:self.firstImageView Acion:@selector(firstImageViewTapAction:)];
     [self addTapGestureWithImageView:self.secondImageView Acion:@selector(secondImageViewTapAction:)];
     [self addTapGestureWithImageView:self.threeImageView Acion:@selector(thirdImageViewTapAction:)];
     
-
     self.playButton.layer.cornerRadius      = self.playButton.frame.size.height * 0.5;
 //    [self.playButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
 //    [self.playButton.layer setBorderWidth:1.5f];
@@ -61,7 +64,7 @@
     
     [super layoutSubviews];
     
-
+ [self.progressView setProgress:0.3 animated:YES];
 }
 
 #pragma mark - 设置手势
