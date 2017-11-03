@@ -9,6 +9,7 @@
 #import "JLCardViewController.h"
 #import "JLDragCardView.h"
 #import "CardHeader.h"
+#import "DragCardView.h"
 
 #define CARD_NUM 4
 #define MIN_INFO_NUM 10
@@ -25,7 +26,6 @@
 
 @property (strong, nonatomic) UIButton *liekBtn;
 @property (strong, nonatomic) UIButton *disLikeBtn;
-
 @property (assign, nonatomic) BOOL flag;
 
 @end
@@ -49,7 +49,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestSourceData:YES];
     });
-    
 }
 
 
@@ -62,7 +61,6 @@
     [reloadBtn addTarget:self action:@selector(refreshAllCards) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:reloadBtn];
     
-    
     self.disLikeBtn       = [UIButton buttonWithType:UIButtonTypeCustom];
     self.disLikeBtn.frame = CGRectMake(lengthFit(80), CARD_HEIGHT+lengthFit(100), 60, 60);
     [self.disLikeBtn setImage:[UIImage imageNamed:@"dislikeBtn"] forState:UIControlStateNormal];
@@ -74,7 +72,6 @@
     [self.liekBtn setImage:[UIImage imageNamed:@"likeBtn"] forState:UIControlStateNormal];
     [self.liekBtn addTarget:self action:@selector(rightButtonClickAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.liekBtn];
-    
     
 }
 
@@ -115,7 +112,6 @@
     /*
      在此添加网络数据请求代码
      */
-    
     NSMutableArray *objectArray = [@[] mutableCopy];
     for (int i = 1; i<=10; i++) {
         [objectArray addObject:@{@"number":[NSString stringWithFormat:@"%ld",self.page*10+i],@"image":[NSString stringWithFormat:@"%d.jpeg",i]}];
@@ -128,7 +124,6 @@
     if (needLoad) {
         [self loadAllCards];
     }
-    
 }
 
 #pragma mark - 重新加载卡片
@@ -150,9 +145,7 @@
     for (int i=0; i<_allCards.count ;i++) {
         
         JLDragCardView *draggableView=self.allCards[i];
-        
         CGPoint finishPoint = CGPointMake(self.view.center.x, CARD_HEIGHT/2 + 40);
-        
         [UIView animateKeyframesWithDuration:0.5 delay:0.06*i options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
             
             draggableView.center = finishPoint;
@@ -186,9 +179,16 @@
 
 #pragma mark - 首次添加卡片
 -(void)addCards{
+    
     for (int i = 0; i<CARD_NUM; i++) {
         
-        JLDragCardView *draggableView = [[JLDragCardView alloc]initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width+CARD_WIDTH, self.view.center.y-CARD_HEIGHT/2, CARD_WIDTH, CARD_HEIGHT)];
+//        DragCardView *draggableView = [[DragCardView alloc]initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width+CARD_WIDTH, self.view.center.y-CARD_HEIGHT/2, CARD_WIDTH, CARD_HEIGHT)];
+//           DragCardView *draggableView = [[DragCardView alloc]init];
+
+        //适配xib类型的view
+        DragCardView *draggableView = [[[NSBundle mainBundle] loadNibNamed:@"DragCardView" owner:nil options:nil] objectAtIndex:0];
+        draggableView.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width+CARD_WIDTH, self.view.center.y-CARD_HEIGHT/2, CARD_WIDTH, CARD_HEIGHT);
+        
         
         if (i>0&&i<CARD_NUM-1) {
             draggableView.transform=CGAffineTransformScale(draggableView.transform, pow(CARD_SCALE, i), pow(CARD_SCALE, i));
@@ -271,8 +271,6 @@
     } else {
         self.disLikeBtn.transform=CGAffineTransformMakeScale(1+0.1*fabs(distance/PAN_DISTANCE), 1+0.1*fabs(distance/PAN_DISTANCE));
     }
-    
-    
 }
 
 #pragma mark - 滑动终止后复原其他卡片
@@ -302,7 +300,6 @@
                          self.disLikeBtn.transform = CGAffineTransformMakeScale(1, 1);
                          self.liekBtn.transform = CGAffineTransformMakeScale(1, 1);
                      }];
-    
 }
 
 #pragma mark - 喜欢
@@ -347,6 +344,7 @@
     [self adjustOtherCards];
 }
 -(void)leftButtonClickAction {
+    
     if (_flag == YES) {
         return;
     }

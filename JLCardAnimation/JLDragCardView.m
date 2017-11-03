@@ -43,22 +43,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        self.layer.cornerRadius      = 4;
-        self.layer.shadowRadius      = 3;
-        self.layer.shadowOpacity     = 0.2;
-        self.layer.shadowOffset      = CGSizeMake(1, 1);
-        self.layer.shadowPath        = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+
         
-        self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
-        [self addGestureRecognizer:self.panGesture];
+        [self setUpBaseUI];
         
 //        UIView *bgView            = [[UIView alloc]initWithFrame:self.bounds];
 //        bgView.layer.cornerRadius = 4;
 //        bgView.clipsToBounds      = YES;
 //        [self addSubview:bgView];
-        
-        
 //        self.headerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
 //        self.headerImageView.backgroundColor = [UIColor lightGrayColor];
 //        self.headerImageView.userInteractionEnabled = YES;
@@ -70,29 +62,55 @@
 //        self.nameLabel.font = [UIFont systemFontOfSize:16];
 //        self.nameLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
 //        [bgView addSubview:self.nameLabel];
-//
 //        UILabel *alertLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.frame.size.width +30, self.frame.size.width - 40, 20)];
 //        alertLabel.font = [UIFont systemFontOfSize:12];
 //        alertLabel.textColor = [UIColor colorWithRed:155/255.0 green:155/255.0 blue:155/255.0 alpha:1];
 //        alertLabel.text = @"其它，10km";
 //        [bgView addSubview:alertLabel];
         
-        self.layer.allowsEdgeAntialiasing                 = YES;
 //        bgView.layer.allowsEdgeAntialiasing               = YES;
 //        self.headerImageView.layer.allowsEdgeAntialiasing = YES;
         
-        [self addSubview:self.dislikeButton];
-        [self addSubview:self.likeButton];
-
-        self.dislikeButton.alpha = 0.0f;
-        self.likeButton.alpha = 0.0f;
-        
-        [self.layer addObserver:self forKeyPath:@"position" options:0 context:NULL];
-       
     }
     return self;
 }
 
+-(void)awakeFromNib{
+    
+    [super awakeFromNib];
+    
+    [self setUpBaseUI];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setUpBaseUI];
+    }
+    return self;
+}
+
+- (void)setUpBaseUI{
+    
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.cornerRadius      = 4;
+    self.layer.shadowRadius      = 3;
+    self.layer.shadowOpacity     = 0.2;
+    self.layer.shadowOffset      = CGSizeMake(1, 1);
+    
+    
+    self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
+    [self addGestureRecognizer:self.panGesture];
+    self.layer.allowsEdgeAntialiasing                 = YES;
+    [self addSubview:self.dislikeButton];
+    [self addSubview:self.likeButton];
+    
+    self.dislikeButton.alpha = 0.0f;
+    self.likeButton.alpha = 0.0f;
+    
+    [self.layer addObserver:self forKeyPath:@"position" options:0 context:NULL];
+}
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     
@@ -124,6 +142,9 @@
     
     //在右边
      self.dislikeButton.frame = CGRectMake(self.bounds.size.width - 20 - 60,  20, 60, 60);
+    
+    //设置阴影
+    self.layer.shadowPath        = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
 }
 
 
@@ -211,9 +232,6 @@
         self.likeButton.alpha = 0.0;
         self.dislikeButton.alpha = 0.0;
     }
-   
-    
-    
 }
 
 

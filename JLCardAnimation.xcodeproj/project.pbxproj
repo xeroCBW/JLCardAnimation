@@ -30,6 +30,8 @@
 		CC516F5B1D76757100A25D60 /* JLCardAnimationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC516F5A1D76757100A25D60 /* JLCardAnimationUITests.m */; };
 		CC516F6A1D76760200A25D60 /* JLDragCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC516F691D76760200A25D60 /* JLDragCardView.m */; };
 		D08854541FA87AFA0096026D /* CardContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D08854531FA87AFA0096026D /* CardContentView.m */; };
+		D08854571FA88A4B0096026D /* DragCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D08854561FA88A4B0096026D /* DragCardView.m */; };
+		D08854591FA88A5D0096026D /* DragCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08854581FA88A5D0096026D /* DragCardView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,9 @@
 		CC516F6C1D767FBE00A25D60 /* CardHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardHeader.h; sourceTree = "<group>"; };
 		D08854521FA87AFA0096026D /* CardContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardContentView.h; sourceTree = "<group>"; };
 		D08854531FA87AFA0096026D /* CardContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardContentView.m; sourceTree = "<group>"; };
+		D08854551FA88A4B0096026D /* DragCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragCardView.h; sourceTree = "<group>"; };
+		D08854561FA88A4B0096026D /* DragCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragCardView.m; sourceTree = "<group>"; };
+		D08854581FA88A5D0096026D /* DragCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DragCardView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +167,9 @@
 				CC516F391D76757000A25D60 /* AppDelegate.m */,
 				CC516F681D76760200A25D60 /* JLDragCardView.h */,
 				CC516F691D76760200A25D60 /* JLDragCardView.m */,
+				D08854551FA88A4B0096026D /* DragCardView.h */,
+				D08854561FA88A4B0096026D /* DragCardView.m */,
+				D08854581FA88A5D0096026D /* DragCardView.xib */,
 				D08854521FA87AFA0096026D /* CardContentView.h */,
 				D08854531FA87AFA0096026D /* CardContentView.m */,
 				CC1E91741D77BFA3000FA066 /* JLCardViewController.h */,
@@ -315,6 +323,7 @@
 				CC516F451D76757000A25D60 /* LaunchScreen.storyboard in Resources */,
 				CC1E91B21D7813F2000FA066 /* dislikeBtn.png in Resources */,
 				CC1E91A11D780C97000FA066 /* 5.jpeg in Resources */,
+				D08854591FA88A5D0096026D /* DragCardView.xib in Resources */,
 				CC1E91A61D780C97000FA066 /* 7.jpeg in Resources */,
 				CC1E91A31D780C97000FA066 /* 3.jpeg in Resources */,
 				CC516F421D76757000A25D60 /* Assets.xcassets in Resources */,
@@ -349,6 +358,7 @@
 				CC516F6A1D76760200A25D60 /* JLDragCardView.m in Sources */,
 				CC516F3A1D76757000A25D60 /* AppDelegate.m in Sources */,
 				CC1E91761D77BFA3000FA066 /* JLCardViewController.m in Sources */,
+				D08854571FA88A4B0096026D /* DragCardView.m in Sources */,
 				CC516F371D76757000A25D60 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

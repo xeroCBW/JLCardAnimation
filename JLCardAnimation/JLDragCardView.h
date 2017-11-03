@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define ROTATION_ANGLE M_PI/8
-#define CLICK_ANIMATION_TIME 0.5
+#define CLICK_ANIMATION_TIME 0.25
 #define RESET_ANIMATION_TIME 0.3
 
 @class JLDragCardView;
