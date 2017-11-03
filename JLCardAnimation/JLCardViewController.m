@@ -183,10 +183,10 @@
     for (int i = 0; i<CARD_NUM; i++) {
         
 //        DragCardView *draggableView = [[DragCardView alloc]initWithFrame:CGRectMake([[UIScreen mainScreen]bounds].size.width+CARD_WIDTH, self.view.center.y-CARD_HEIGHT/2, CARD_WIDTH, CARD_HEIGHT)];
-//           DragCardView *draggableView = [[DragCardView alloc]init];
 
         //适配xib类型的view
-        DragCardView *draggableView = [[[NSBundle mainBundle] loadNibNamed:@"DragCardView" owner:nil options:nil] objectAtIndex:0];
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"DragCardView" owner:nil options:nil];
+        DragCardView *draggableView = [nibs objectAtIndex:0];
         draggableView.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width+CARD_WIDTH, self.view.center.y-CARD_HEIGHT/2, CARD_WIDTH, CARD_HEIGHT);
         
         
