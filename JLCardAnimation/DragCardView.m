@@ -19,6 +19,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *threeImageView;
 
+@property (weak, nonatomic) IBOutlet UIView *progressView;
+
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+
 @end
 
 @implementation DragCardView
@@ -34,10 +38,33 @@
     [self addTapGestureWithImageView:self.firstImageView Acion:@selector(firstImageViewTapAction:)];
     [self addTapGestureWithImageView:self.secondImageView Acion:@selector(secondImageViewTapAction:)];
     [self addTapGestureWithImageView:self.threeImageView Acion:@selector(thirdImageViewTapAction:)];
-   
+    
+
+    self.playButton.layer.cornerRadius      = self.playButton.frame.size.height * 0.5;
+//    [self.playButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//    [self.playButton.layer setBorderWidth:1.5f];
+    self.playButton.layer.shadowColor       = [UIColor blackColor].CGColor;
+    self.playButton.layer.shadowRadius      = 3;
+    self.playButton.layer.shadowOpacity     = 0.8;
+    self.playButton.layer.shadowOffset      = CGSizeMake(3, 3);
+    //不设置bezierPath 就可以完成阴影了
+//    self.playButton.layer.shadowPath        = [UIBezierPath bezierPathWithRect:self.playButton.bounds].CGPath;
+    
+//    self.playButton.layer.masksToBounds = YES;
+    
 }
 
 
+#pragma mark - 设置阴影
+
+-(void)layoutSubviews{
+    
+    [super layoutSubviews];
+    
+
+}
+
+#pragma mark - 设置手势
 - (void)addTapGestureWithImageView:(UIImageView *)imageView Acion:(nullable SEL)action{
     
     imageView.userInteractionEnabled = YES;

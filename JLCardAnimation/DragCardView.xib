@@ -22,7 +22,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-Qi-FtN">
                             <rect key="frame" x="0.0" y="0.0" width="284" height="426"/>
-                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-QW-OSu">
                             <rect key="frame" x="284" y="0.0" width="142" height="142"/>
@@ -36,6 +36,13 @@
                             <rect key="frame" x="284" y="284" width="142" height="142"/>
                             <color key="backgroundColor" red="1" green="0.51860894097222221" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-Db-fVC">
+                            <rect key="frame" x="0.0" y="421" width="426" height="5"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="5" id="yeZ-c1-F9R"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.61283572210000004" blue="0.32399563320000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -44,6 +51,7 @@
                         <constraint firstItem="NPv-QW-OSu" firstAttribute="leading" secondItem="4PK-Qi-FtN" secondAttribute="trailing" id="Cdg-ce-Vd5"/>
                         <constraint firstItem="C2H-wg-tSp" firstAttribute="top" secondItem="NPv-QW-OSu" secondAttribute="bottom" id="GhL-A4-6sh"/>
                         <constraint firstAttribute="bottom" secondItem="4PK-Qi-FtN" secondAttribute="bottom" id="HHM-RO-4Ri"/>
+                        <constraint firstItem="VVt-Db-fVC" firstAttribute="leading" secondItem="2Bb-P5-fjE" secondAttribute="leading" id="KEr-WJ-ICx"/>
                         <constraint firstItem="4PK-Qi-FtN" firstAttribute="width" secondItem="2Bb-P5-fjE" secondAttribute="width" multiplier="2:3" id="VUf-WY-cQs"/>
                         <constraint firstItem="4PK-Qi-FtN" firstAttribute="leading" secondItem="2Bb-P5-fjE" secondAttribute="leading" id="ZuR-58-vR6"/>
                         <constraint firstItem="NPv-QW-OSu" firstAttribute="top" secondItem="2Bb-P5-fjE" secondAttribute="top" id="aHJ-C9-avl"/>
@@ -52,10 +60,12 @@
                         <constraint firstAttribute="trailing" secondItem="NPv-QW-OSu" secondAttribute="trailing" id="gij-OZ-w0d"/>
                         <constraint firstItem="A0f-V0-dgl" firstAttribute="leading" secondItem="4PK-Qi-FtN" secondAttribute="trailing" id="qfV-C1-iGb"/>
                         <constraint firstAttribute="trailing" secondItem="C2H-wg-tSp" secondAttribute="trailing" id="sLB-Ti-3kq"/>
+                        <constraint firstAttribute="trailing" secondItem="VVt-Db-fVC" secondAttribute="trailing" id="sQl-fh-knu"/>
                         <constraint firstItem="4PK-Qi-FtN" firstAttribute="top" secondItem="2Bb-P5-fjE" secondAttribute="top" id="v7g-gW-bQi"/>
                         <constraint firstItem="NPv-QW-OSu" firstAttribute="height" secondItem="2Bb-P5-fjE" secondAttribute="height" multiplier="1:3" id="wUQ-r5-HWC"/>
                         <constraint firstAttribute="width" secondItem="2Bb-P5-fjE" secondAttribute="height" multiplier="1:1" id="wtl-M8-qVR"/>
                         <constraint firstItem="C2H-wg-tSp" firstAttribute="height" secondItem="NPv-QW-OSu" secondAttribute="height" id="xpw-ON-Ut0"/>
+                        <constraint firstAttribute="bottom" secondItem="VVt-Db-fVC" secondAttribute="bottom" id="zU6-L0-doi"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzA-un-Fdp">
@@ -72,17 +82,30 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-C5-lPf">
+                    <rect key="frame" x="173" y="403.5" width="80" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="P7X-Kt-tBh"/>
+                        <constraint firstAttribute="width" constant="80" id="vlF-za-y1r"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="2Bb-P5-fjE" firstAttribute="leading" secondItem="juW-gj-i9x" secondAttribute="leading" id="AB4-n1-cfh"/>
+                <constraint firstItem="Q6N-C5-lPf" firstAttribute="centerY" secondItem="VVt-Db-fVC" secondAttribute="centerY" id="Udq-yj-dP1"/>
                 <constraint firstItem="2Bb-P5-fjE" firstAttribute="top" secondItem="juW-gj-i9x" secondAttribute="top" id="fSA-pQ-oDb"/>
                 <constraint firstAttribute="trailing" secondItem="2Bb-P5-fjE" secondAttribute="trailing" id="h0G-Ch-7TB"/>
+                <constraint firstItem="Q6N-C5-lPf" firstAttribute="centerX" secondItem="juW-gj-i9x" secondAttribute="centerX" id="nWb-p8-R1f"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bigImageView" destination="4PK-Qi-FtN" id="g5q-Gy-ez3"/>
                 <outlet property="firstImageView" destination="NPv-QW-OSu" id="WrQ-YY-TDc"/>
+                <outlet property="playButton" destination="Q6N-C5-lPf" id="HEx-fq-ocA"/>
+                <outlet property="progressView" destination="VVt-Db-fVC" id="ePF-cq-ePE"/>
                 <outlet property="secondImageView" destination="C2H-wg-tSp" id="R62-IC-Lu9"/>
                 <outlet property="threeImageView" destination="A0f-V0-dgl" id="WE0-IE-3rQ"/>
             </connections>
