@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"ZTDraggableView";
+    self.title = @"CBWDraggableView";
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.allCards = [NSMutableArray array];
@@ -51,6 +51,13 @@
     });
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
 
 #pragma mark - 添加控件
 -(void)addControls{

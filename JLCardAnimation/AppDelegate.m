@@ -21,7 +21,10 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [JLCardViewController new];
+    
+    UIViewController *vc = [[JLCardViewController alloc]init];
+    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController = navi;
     
     
     
