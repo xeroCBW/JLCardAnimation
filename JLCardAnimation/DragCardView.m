@@ -63,7 +63,7 @@
 -(void)layoutSubviews{
     
     [super layoutSubviews];
-    
+        
  [self.progressView setProgress:0.3 animated:YES];
 }
 

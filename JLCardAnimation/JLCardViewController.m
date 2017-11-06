@@ -13,7 +13,8 @@
 
 #define CARD_NUM 4
 #define MIN_INFO_NUM 10
-#define CARD_SCALE 0.95
+#define CARD_SCALE 0.95//设置图片之间的比例(默认0.95)
+#define CARD_Y_MARGIN 0 //默认10
 
 
 @interface JLCardViewController()<JLDragCardDelegate>
@@ -162,7 +163,7 @@
                 JLDragCardView *preDraggableView=[_allCards objectAtIndex:i-1];
                 draggableView.transform=CGAffineTransformScale(draggableView.transform, pow(CARD_SCALE, i), pow(CARD_SCALE, i));
                 CGRect frame=draggableView.frame;
-                frame.origin.y=preDraggableView.frame.origin.y+(preDraggableView.frame.size.height-frame.size.height)+10*pow(0.7,i);
+                frame.origin.y=preDraggableView.frame.origin.y+(preDraggableView.frame.size.height-frame.size.height)+CARD_Y_MARGIN*pow(0.7,i);
                 draggableView.frame=frame;
                 
             }else if (i==CARD_NUM-1) {
